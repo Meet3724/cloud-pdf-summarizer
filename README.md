@@ -34,22 +34,26 @@ graph TD
     E --> F[Summarizes text using Pegasus model (HuggingFace)]
     F --> G[Prints summary to VM terminal (SSH)]
 
-🖥️ Screenshots
+---
+
+## 🖥️ Screenshots
 
 ✅ Flask UI
-c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213544.png
+![Flask UI](<Screenshot 2025-06-28 213544.png>)
 ✅ Visual Studio Code Project Setup
-c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213607.png
+![Visual Studio Code Project Setup](<Screenshot 2025-06-28 213607.png>)
 ✅ Cloud Storage Bucket
-c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213632.png
+![Cloud Storage Bucket](<Screenshot 2025-06-28 213632.png>)
 ✅ Pub/Sub Topic and Subscription
-c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213811.png
+![Pub/Sub Topic and Subscription](<Screenshot 2025-06-28 213811.png>)
 ✅ Compute Engine VM Running 
-c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 214239.png
+![Compute Engine VM Running](<Screenshot 2025-06-28 214239.png>)
 ✅ Cloud Run Deployment
-c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 214001.png
+![Cloud Run Deployment](<Screenshot 2025-06-28 214001.png>)
 
-🧪 Sample Summary Output
+---
+
+## 🧪 Sample Summary Output
 Example of a summarized PDF:
 Input PDF: Detailed_Cloud_Handout.pdf
 Generated Summary:
@@ -57,7 +61,9 @@ Generated Summary:
 - Benefits: Scalability, global reach.
 - Hands-on: GCP Compute Engine to spin up virtual machines.
 
-⚙️ Setup Instructions
+---
+
+## ⚙️ Setup Instructions
 
 ✅ Prerequisites
 Python 3.9+
@@ -69,13 +75,13 @@ GCP project with the following enabled:
   4. Cloud Run
 
 ✅ Setup
-# Clone repo and set up virtualenv
-git clone https://github.com/your-username/cloud-pdf-summarizer.git
+### Clone repo and set up virtualenv
+git clone https://github.com/Meet3724/cloud-pdf-summarizer.git 
 cd cloud-pdf-summarizer
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
 
-# Install dependencies
+### Install dependencies
 
 pip install -r requirements.txt
 ✅ Flask Web App
@@ -90,12 +96,16 @@ Install required packages (transformers, PyMuPDF, torch, etc.)
 Run the listener with:
 python summarize_pdf.py
 
-🧠 Model Used
+--- 
+
+### 🧠 Model Used
 Model: google/pegasus-xsum (via HuggingFace Transformers)
 Library: transformers + torch
 Text Extraction: PyMuPDF
 
-🧾 Credits
+--- 
+
+### 🧾 Credits
 Meet Jaywant Nachanekar
 SY EXCS Engineering Student
 Developed as part of the Cloud Computing course project using real-world cloud tools and architecture!
