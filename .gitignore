@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment & config
+.env
+*.env
+
+# Log files
+*.log
+
+# VS Code
+.vscode/
+
+# PyMuPDF temp/cache
+*.xoj
+*.xoj.backup
+
+# OS-generated
+.DS_Store
+Thumbs.db
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Cloud function deployment artifacts
+.cloudbuild/
+.nox/
+.pytest_cache/
+
+# Google Cloud credentials (be cautious with this!)
+*.json

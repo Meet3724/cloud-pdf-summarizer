@@ -1,0 +1,7 @@
+flask
+gunicorn
+google-cloud-storage
+google-cloud-firestore
+transformers
+torch
+PyMuPDF
