@@ -1,104 +1,101 @@
-# 📄 Cloud PDF Summarizer using Google Cloud Platform 🚀
+# 📄 Cloud PDF Summarizer using GCP and Flask
 
-This project is a cloud-based application that summarizes uploaded PDF documents using HuggingFace Transformers and stores the summaries in Firestore. It uses an event-driven architecture leveraging several GCP services.
-
-## ✅ Objective
-
-Automatically summarize PDF files uploaded to a Cloud Storage bucket, using an AI model, and save the summary to Firestore for quick access.
+A serverless cloud-based application that **automatically summarizes PDF files** using Google Cloud services and displays the summary on a Flask web interface.
 
 ---
 
-## 🏗️ Architecture Overview
+## 🚀 Project Overview
 
-**Cloud Services Used:**
-- **Cloud Storage** – Stores uploaded PDF files.
-- **Cloud Functions** – Triggered when a new PDF is uploaded to the bucket; it publishes a message to a Pub/Sub topic.
-- **Cloud Pub/Sub** – Carries filename messages from the function to the summarizer service.
-- **Cloud Run** – Runs a Python Flask app that:
-  - Downloads the PDF from Cloud Storage.
-  - Extracts the text using `PyMuPDF`.
-  - Summarizes it using a HuggingFace transformer.
-  - Stores the output summary in **Firestore**.
+This project allows users to upload PDF files via a simple **Flask web app**. Once uploaded, the file is stored in **Google Cloud Storage**, and a message is published to **Google Cloud Pub/Sub**.  
+A background listener running on a **Compute Engine VM** listens to these messages, extracts the text from the PDF using `PyMuPDF`, and summarizes it using **HuggingFace Transformers**. The final summary is sent back to the Flask app UI for display.
 
 ---
 
-## 🔁 Workflow
+## 🧩 Tech Stack and Cloud Services Used
 
-[User Uploads PDF]
-↓
-[Cloud Function Trigger (GCS)]
-↓
-[Publishes filename to Pub/Sub]
-↓
-[Cloud Run Service picks message]
-↓
-[Downloads PDF, extracts text, summarizes]
-↓
-[Saves to Firestore]
+| Technology                | Purpose                                                         |
+|---------------------------|-----------------------------------------------------------------|
+| **Flask**                 | Frontend interface to upload PDF and view summary               |
+| **Google Cloud Storage**  | Store uploaded PDF files securely in the cloud                  |
+| **Google Pub/Sub**        | Trigger summarization pipeline when PDF is uploaded             |
+| **Google Compute Engine** | VM runs  script for extraction & summarization                  |
+| **Google Cloud Run**      |  To run summarization microservice (serverless)                 |
+| **VS Code**               | Used for project development                                    |
 
 ---
 
-## 📁 Project Structure
+## 🧠 Updated Summary Generation Flow Diagram
 
-cloud-pdf-summarizer/
-├── cloud_function_trigger/
-│ ├── main.py # Publishes filename to Pub/Sub
-│ ├── requirements.txt
-│
-├── cloud_run_service/
-│ ├── main.py # Summarizes PDF and stores summary
-│ ├── requirements.txt
-│ ├── Dockerfile
-│
-├── README.md
-├── .gitignore
+graph TD
+    A[User uploads PDF via Flask UI] --> B[File uploaded to Cloud Storage (GCS)]
+    B --> C[Pub/Sub topic triggered]
+    C --> D[Compute Engine VM listener receives message]
+    D --> E[Extracts text using PyMuPDF]
+    E --> F[Summarizes text using Pegasus model (HuggingFace)]
+    F --> G[Prints summary to VM terminal (SSH)]
 
----
+🖥️ Screenshots
 
-## 🚀 Deployment Steps
+✅ Flask UI
+c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213544.png
+✅ Visual Studio Code Project Setup
+c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213607.png
+✅ Cloud Storage Bucket
+c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213632.png
+✅ Pub/Sub Topic and Subscription
+c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 213811.png
+✅ Compute Engine VM Running 
+c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 214239.png
+✅ Cloud Run Deployment
+c:\Users\Amit\Pictures\Screenshots\Screenshot 2025-06-28 214001.png
 
-### 1. Deploy the Cloud Function (GCS → Pub/Sub)
+🧪 Sample Summary Output
+Example of a summarized PDF:
+Input PDF: Detailed_Cloud_Handout.pdf
+Generated Summary:
+- IaaS (Infrastructure as a Service): Offers virtualized computing resources.
+- Benefits: Scalability, global reach.
+- Hands-on: GCP Compute Engine to spin up virtual machines.
 
-gcloud functions deploy notify-pdf-upload \
-  --runtime python310 \
-  --trigger-resource cps-bucket \
-  --trigger-event google.storage.object.finalize \
-  --set-env-vars PROJECT_ID=solar-bolt-464117-t2,TOPIC_ID=cps-topic \
-  --region asia-south1 \
-  --entry-point notify_pdf_upload \
-  --project solar-bolt-464117-t2
+⚙️ Setup Instructions
 
-### 2. Deploy Cloud Run (Summarizer Service)
+✅ Prerequisites
+Python 3.9+
+pip and virtualenv
+GCP project with the following enabled:
+  1. Cloud Storage
+  2. Pub/Sub
+  3. Compute Engine
+  4. Cloud Run
 
-cd cloud_run_service
-gcloud run deploy summarize-service \
-  --source . \
-  --region asia-south1 \
-  --project solar-bolt-464117-t2 \
-  --memory 1Gi \
-  --timeout 540s \
-  --set-env-vars PROJECT_ID=solar-bolt-464117-t2,BUCKET_NAME=cps-bucket
+✅ Setup
+# Clone repo and set up virtualenv
+git clone https://github.com/your-username/cloud-pdf-summarizer.git
+cd cloud-pdf-summarizer
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
 
-### 🧪 Example Firestore Output
-Collection: summaries
-{
-  "filename": "example.pdf",
-  "summary": "This document discusses the key concepts of..."
-}
+# Install dependencies
 
-### 📦 Tech Stack
+pip install -r requirements.txt
+✅ Flask Web App
+cd flask_ui
+python app.py
+The app will be live at http://localhost:5000
 
-Python 3.10
-Flask
-HuggingFace Transformers (DistilBART)
-PyMuPDF (fitz)
-Google Cloud Storage
-Pub/Sub
-Firestore
-Cloud Functions
-Cloud Run
+✅ VM Listener Script
+Deploy summarize_pdf.py on a Compute Engine VM.
+Make sure it has access to GCS and Pub/Sub.
+Install required packages (transformers, PyMuPDF, torch, etc.)
+Run the listener with:
+python summarize_pdf.py
 
-### 🧑‍🎓 Author
+🧠 Model Used
+Model: google/pegasus-xsum (via HuggingFace Transformers)
+Library: transformers + torch
+Text Extraction: PyMuPDF
+
+🧾 Credits
 Meet Jaywant Nachanekar
 SY EXCS Engineering Student
-CDAC Cloud Computing Project (June 2025)
+Developed as part of the Cloud Computing course project using real-world cloud tools and architecture!
