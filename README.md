@@ -24,15 +24,15 @@ A background listener running on a **Compute Engine VM** listens to these messag
 
 ---
 
-## 🧠 Updated Summary Generation Flow Diagram
+## 🧠 Summary Generation Flow Diagram
 
 graph TD
-    A[User uploads PDF via Flask UI] --> B[File uploaded to Cloud Storage (GCS)]
-    B --> C[Pub/Sub topic triggered]
-    C --> D[Compute Engine VM listener receives message]
-    D --> E[Extracts text using PyMuPDF]
-    E --> F[Summarizes text using Pegasus model (HuggingFace)]
-    F --> G[Prints summary to VM terminal (SSH)]
+A[User uploads PDF via Flask UI] --> B[File uploaded to Cloud Storage (GCS)]
+B --> C[Pub/Sub topic triggered]
+C --> D[Compute Engine VM listener receives message]
+D --> E[Extracts text using PyMuPDF]
+E --> F[Summarizes text using Pegasus model (HuggingFace)]
+F --> G[Prints summary to VM terminal (SSH)]
 
 ---
 
