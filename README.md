@@ -111,7 +111,8 @@ Text Extraction: PyMuPDF
 --- 
 
 ### 🧾 Credits
-```Meet Jaywant Nachanekar
+```
+Meet Jaywant Nachanekar
 SY EXCS Engineering Student
 Developed as part of the Cloud Computing course project using real-world cloud tools and architecture!
 ```
