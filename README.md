@@ -40,14 +40,19 @@ graph TD
 
 ✅ Flask UI
 ![Flask UI](<Screenshot 2025-06-28 213544.png>)
+
 ✅ Visual Studio Code Project Setup
 ![Visual Studio Code Project Setup](<Screenshot 2025-06-28 213607.png>)
+
 ✅ Cloud Storage Bucket
 ![Cloud Storage Bucket](<Screenshot 2025-06-28 213632.png>)
+
 ✅ Pub/Sub Topic and Subscription
 ![Pub/Sub Topic and Subscription](<Screenshot 2025-06-28 213811.png>)
+
 ✅ Compute Engine VM Running 
 ![Compute Engine VM Running](<Screenshot 2025-06-28 214239.png>)
+
 ✅ Cloud Run Deployment
 ![Cloud Run Deployment](<Screenshot 2025-06-28 214001.png>)
 
