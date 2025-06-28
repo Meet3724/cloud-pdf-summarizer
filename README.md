@@ -33,7 +33,7 @@ C --> D[Compute Engine VM listener receives message]
 D --> E[Extracts text using PyMuPDF]
 E --> F[Summarizes text using Pegasus model (HuggingFace)]
 F --> G[Prints summary to VM terminal (SSH)] 
-
+```
 ---
 
 ## 🖥️ Screenshots
@@ -59,13 +59,13 @@ F --> G[Prints summary to VM terminal (SSH)]
 ---
 
 ## 🧪 Sample Summary Output
-Example of a summarized PDF:
+```Example of a summarized PDF:
 Input PDF: Detailed_Cloud_Handout.pdf
 Generated Summary:
 - IaaS (Infrastructure as a Service): Offers virtualized computing resources.
 - Benefits: Scalability, global reach.
 - Hands-on: GCP Compute Engine to spin up virtual machines.
-
+```
 ---
 
 ## ⚙️ Setup Instructions
@@ -81,14 +81,14 @@ GCP project with the following enabled:
 
 ✅ Setup
 ### Clone repo and set up virtualenv
-git clone https://github.com/Meet3724/cloud-pdf-summarizer.git 
+```git clone https://github.com/Meet3724/cloud-pdf-summarizer.git 
 cd cloud-pdf-summarizer
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
-
+```
 ### Install dependencies
 
-pip install -r requirements.txt
+```pip install -r requirements.txt
 ✅ Flask Web App
 cd flask_ui
 python app.py
@@ -100,17 +100,18 @@ Make sure it has access to GCS and Pub/Sub.
 Install required packages (transformers, PyMuPDF, torch, etc.)
 Run the listener with:
 python summarize_pdf.py
-
+```
 --- 
 
 ### 🧠 Model Used
-Model: google/pegasus-xsum (via HuggingFace Transformers)
+```Model: google/pegasus-xsum (via HuggingFace Transformers)
 Library: transformers + torch
 Text Extraction: PyMuPDF
-
+```
 --- 
 
 ### 🧾 Credits
-Meet Jaywant Nachanekar
+```Meet Jaywant Nachanekar
 SY EXCS Engineering Student
 Developed as part of the Cloud Computing course project using real-world cloud tools and architecture!
+```
