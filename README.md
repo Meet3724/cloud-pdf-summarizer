@@ -26,7 +26,7 @@ A background listener running on a **Compute Engine VM** listens to these messag
 
 ## 🧠 Summary Generation Flow Diagram
 
-```graph TD
+```
 A[User uploads PDF via Flask UI] --> B[File uploaded to Cloud Storage (GCS)] 
 B --> C[Pub/Sub topic triggered]
 C --> D[Compute Engine VM listener receives message]
@@ -59,7 +59,8 @@ F --> G[Prints summary to VM terminal (SSH)]
 ---
 
 ## 🧪 Sample Summary Output
-```Example of a summarized PDF:
+```
+Example of a summarized PDF:
 Input PDF: Detailed_Cloud_Handout.pdf
 Generated Summary:
 - IaaS (Infrastructure as a Service): Offers virtualized computing resources.
@@ -81,14 +82,15 @@ GCP project with the following enabled:
 
 ✅ Setup
 ### Clone repo and set up virtualenv
-```git clone https://github.com/Meet3724/cloud-pdf-summarizer.git 
+```
+git clone https://github.com/Meet3724/cloud-pdf-summarizer.git 
 cd cloud-pdf-summarizer
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
 ```
 ### Install dependencies
-
-```pip install -r requirements.txt
+```
+pip install -r requirements.txt
 ✅ Flask Web App
 cd flask_ui
 python app.py
@@ -104,7 +106,8 @@ python summarize_pdf.py
 --- 
 
 ### 🧠 Model Used
-```Model: google/pegasus-xsum (via HuggingFace Transformers)
+```
+Model: google/pegasus-xsum (via HuggingFace Transformers)
 Library: transformers + torch
 Text Extraction: PyMuPDF
 ```
